@@ -23,7 +23,7 @@
     }
 ?>
     <h1>Arbol Binario</h1>
-    <!-- <div class="Canvas_arbol" id="Canvas_arbol"></div> -->
+    <div class="Canvas_arbol" id="Canvas_arbol"></div>
     <div class="Formulario_raiz">
         <form action="index.php" method="Post" id="Agergar_Raiz">
         <h2>Agergar Raiz</h2>
@@ -269,12 +269,78 @@
         }
     }
         ?>
-    </div>
+    </div> 
+    
+    <?php
+    class Optener{ //RECURSIVIDAD
+        public function Optener_nodos($nodo) {
+            if ($nodo != null) {
+                $Valor = $nodo->getValor();
+                echo "Nodos.push({id: $Valor, label: String($Valor)});";
+                $this->Optener_nodos($nodo->getIzquierda());
+                $this->Optener_nodos($nodo->getDerecha());
+            }
+        }
+    public function edges($n) {
+        if ($n != null) {
+            $p = $n->getValor();
+            if ($n->getIzquierda() != null) {
+                $h = $n->getIzquierda()->getValor();
+                echo "edges.push({from: $p, to: $h});";
+            }
+            if ($n->getDerecha() != null) {
+                $h = $n->getDerecha()->getValor();
+                echo "edges.push({from: $p, to: $h},);";
+            }
+            $this->edges($n->getIzquierda());
+            $this->edges($n->getDerecha());
+            }
+        }
+    }
+?>
 
-<!-- VIS -->
-<script>
+    <!-- VIS -->
+    <script type="text/javascript">
+    var network = null;
 
-</script>
+    function destroy() {
+        if (network !== null) {
+            network.destroy();
+            network = null;
+        }
+    }
+
+    function draw() {
+        destroy();
+        Nodos = [];
+        edges = [];
+
+        <?php
+        $op = new Optener();
+        $op->Optener_nodos($_SESSION['Arbol']->Optener_Raiz());
+        $op->edges($_SESSION['Arbol']->Optener_Raiz());
+        ?>
+        var container = document.getElementById('Canvas_arbol');
+
+        var data = {
+            nodes: Nodos,
+            edges: edges
+        };
+        var options = {
+            edges: {
+                smooth: {
+                    roundness: 0
+                }
+            },
+            layout: {
+                hierarchical: {
+                    sortMethod: "directed"
+                },
+            },
+        };
+        network = new vis.Network(container, data, options);
+    }
+    </script>
 
 </body>
 </html>
