@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script type="text/javascript" src=" vis/dist/vis.js"></script>
+    <link href="vis/dist/vis.css" rel="stylesheet" type="text/css">
+    <title>Arbol Binario</title>
     <style>
-    .Canvas_arbol{
+    .Canvas_arbol {
         border: 2px solid black;
         height: 400px;
         display: flex;
