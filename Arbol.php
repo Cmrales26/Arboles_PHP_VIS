@@ -8,18 +8,13 @@ class Arbol{
         $this->Raiz = null;
     }
     public function CrearArbol($Raiz){
-        if($this->Raiz == null){
-            $this->Raiz = new Node($Raiz);
-        }else{
-            echo 'Ya hay una raiz';
-            return false;
-        }
+        $this->Raiz = new Node($Raiz);
     }
     public function setraiz($raiz){
         $this->raiz = $raiz; 
     }
 
-    public function Optener_Raiz(){
+    public function Obtener_Raiz(){
         return $this->Raiz; 
     }
     public function getVectorR(){
@@ -52,10 +47,10 @@ class Arbol{
     public function agregarNodo($padre,$ubicacion,$nodo){
         if($this->Raiz!=null){
             $NodoPadre=$this->Busqueda($this->Raiz,$padre);
-            if($NodoPadre!=null){
-                if(strcasecmp($ubicacion,"Izquierda")== 0 ){
+                if($NodoPadre!=null){
+                    if(strcasecmp($ubicacion,"Izquierda")== 0 ){
                     if($NodoPadre->getIzquierda()==null){
-                        $NodoPadre->setIzquierda($nodo); 
+                        $NodoPadre->setIzquierda($nodo);
                     }else{
                         $anterior=$NodoPadre->getIzquierda();
                         $NodoPadre->setIzquierda($nodo);  
@@ -100,18 +95,12 @@ class Arbol{
                 if ($p->getDerecha() != null && $p->getDerecha()->getValor() == $n) {
                     $p->setDerecha(null);
                 }
-                echo "<script languaje= 'javascript'>
-                    alert('Nodo  hoja Eliminado');
-                </script>"; 
+                return 'NODO '.$n .' ELIMINADO';
                 } else {
-                echo "<script languaje= 'javascript'>
-                    alert('No se puede eliminar este nodo');
-                </script>"; 
+                return 'EL NODO ' .$n .' NO SE PUEDE ELIMINAR';
                 }
                 } else {
-                echo "<script languaje= 'javascript'>
-                alert('Nodo no existe');
-                </script>"; 
+                return 'EL NODO ' .$n. ' NO EXISTE';
             }
             echo "<script>draw();</script>";
         }
@@ -201,9 +190,9 @@ class Arbol{
         $cantidad=$this->Contar_Nodos($n);
         if($cantidad<$completo){
             $falta=$completo-$cantidad;
-            return "El Arbol no esta completo, faltan ".$falta." nodos para que sea completo";
+            return "EL ARBOL NO ESTÁ COMPLETO, FALTAN ".$falta." NODOS PARA QUE SEA COMPLETO";
         }else{
-            return "El Arbol esta completo";
+            return "EL ARBOL ESTÁ COMPLETO";
         }
     }
     public function MostrarHojas($n){

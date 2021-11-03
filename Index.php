@@ -9,9 +9,14 @@
     <title>Arbol Binario</title>
     <style>
     .Canvas_arbol {
+        text-align: center;
         border: 2px solid black;
         height: 400px;
-        display: flex;
+    }
+    .Container_Mensajes{
+        text-align: center;
+        border: 2px solid black;
+        height: 200px;
     }
     </style>
 </head>
@@ -21,7 +26,7 @@
     session_start();
     if (!isset($_SESSION["Arbol"])) {
     $_SESSION["Arbol"] = new Arbol();
-    echo "<script language='javascript'>alert('Se están implementando el uso de cookies');</script>";
+    echo "< language='javascript'>alert('Se están implementando el uso de cookies');</script>";
     }
 ?>
     <h1>Arbol Binario</h1>
@@ -36,6 +41,7 @@
     </div>
     
     <div class="formulario_nodo">
+        <h2>Agregar Nodo</h2>
         <form action="index.php" method="post" id="Agergar_nodo">
             <input type="number" min="1" placeholder="Numero del padre" name="Numero_Padre" require>
             <br><br>
@@ -43,7 +49,6 @@
             <input type="radio" name="Lado" id="derecha" value="Derecha" required> <label for="derecha" >Derecha </label><br>
             <br>
             <input type="number" min="1" placeholder="Numero del hijo" name="Numero_Hijo" require>
-            <br><br>
             <input type="submit" value="Agregar nodo">
         </form>
         <hr>
@@ -51,7 +56,7 @@
     <div class="Eliminar">
         <h2>Eliminar nodo</h2>
         <form action="index.php" method ="post">
-            <input type="number" min="1" placeholder="Nodo que desea elmiminar" name=Nodo_Eliminar require>
+            <input type="number" min="1" placeholder="Nodo que desea elmiminar" name="Nodo_Eliminar" require>
             <input type="submit" value="Eliminar Nodo">
         </form>
     </div><hr>
@@ -59,33 +64,33 @@
 
     <div class="Opciones">
     <form action="index.php" method= "post">
-    <h1>Opciones</h1>
+    <h2>Opciones</h2>
     <!-- RECORRIDOS -->
     <input type="submit" name="PreOrden" class="btn" value="Recorrido Pre-Orden"></input>
     <input type="submit" name="InOrden" class="btn" value="Recorrido In-Orden"></input>
     <input type="submit" name="PosOrden" class="btn" value="Recorrdio Pos-Orden"></input>
-    <input type="submit" name="PorNiveles" class="btn" value="Recorrido Por Niveles"></input><br><br>
+    <input type="submit" name="PorNiveles" class="btn" value="Recorrido Por Niveles"></input>
     <!--  -->
     <!-- CONTADORES -->
     <input type="submit" name="ContarNodo" class="btn" value="Contar Nodos"></input>
     <input type="submit" name="contarP" class="btn" value="Contar Nodos Pares"></input>  
-    <input type="submit" name="Altura" class="btn" value="Calcular Altura"></input><br><br>
+    <input type="submit" name="Altura" class="btn" value="Calcular Altura"></input>
     <!--  -->
     <!-- ARBOLES -->
     <input type="submit" name="ArbolCompleto" class="btn" value="¿Arbol Completo?"></input>
     <input type="submit" name="NodosHojas" class="btn" value="Ver Nodos Hojas"></input>
     
     </form>
+    <br>
     </div>
 
     <!-- PARTE PARA EL PHP -->
-    <div class="agergar_raiz">
+    <div class="Container_Mensajes">
+        <h1>MENASJES</h1>
+        <div class="agergar_raiz">
         <?php
         if (isset($_POST["Raiz"])){
             $_SESSION["Arbol"]->CrearArbol($_POST["Raiz"]);
-            echo "<script languaje= 'javascript'>
-            alert('Raiz Agregada Correctamente');
-            </script>";
         }
         ?>
     </div>
@@ -93,22 +98,18 @@
     <div class="agergar_nodo">
         <?php
         if (isset($_POST["Numero_Padre"], $_POST["Numero_Hijo"], $_POST["Lado"])) {
-            if($_SESSION["Arbol"]->Optener_Raiz() !=null){
-                $aux= $_SESSION["Arbol"]->Busqueda($_SESSION["Arbol"]->Optener_Raiz(),$_POST["Numero_Padre"]);
+            if($_SESSION["Arbol"]->Obtener_Raiz() !=null){
+                $aux= $_SESSION["Arbol"]->Busqueda($_SESSION["Arbol"]->Obtener_Raiz(),$_POST["Numero_Padre"]);
+                $aux2 = $_SESSION["Arbol"]->Busqueda($_SESSION["Arbol"]->Obtener_Raiz(),$_POST["Numero_Hijo"]);
                 if($aux!=null){
-                $_SESSION["Arbol"]-> agregarNodo($_POST["Numero_Padre"], $_POST["Lado"], new Node($_POST["Numero_Hijo"]));
-                echo "<script languaje= 'javascript'>
-                    alert('Nodo Agregado Correctamente');
-                </script>";
+                    if ($aux2 == null) {
+                        $_SESSION["Arbol"]-> agregarNodo($_POST["Numero_Padre"], $_POST["Lado"], new Node($_POST["Numero_Hijo"]));
+                    }else{
+                        echo "LA ID ". $_POST["Numero_Hijo"]." YA SE ENCUENTRA REGISTRADA";
+                    }
                 }else{
-                echo "<script languaje= 'javascript'>
-                    alert('Nodo Padre No Existe');
-                </script>";
+                    echo "NO SE HA ENCONTRADO ESTE NODO ".$_POST["Numero_Padre"]. " COMO PADRE";
                 }
-                }else{
-                echo "<script languaje= 'javascript'>
-                    alert('El Arbol esta Vacio');
-                </script>";
             }
         }
         ?>
@@ -116,7 +117,7 @@
     <div class="eliminar_nodo">
         <?php
         if (isset($_POST["Nodo_Eliminar"])){
-            $_SESSION["Arbol"]->EliminarNodo($_POST["Nodo_Eliminar"]);
+            echo $_SESSION["Arbol"]->EliminarNodo($_POST["Nodo_Eliminar"]);
         }
         ?>
     </div>
@@ -125,20 +126,16 @@
     <div class="Pre-Order">
         <?php
         if (isset($_POST["PreOrden"])) {
-        if($_SESSION["Arbol"]->Optener_Raiz()!=null){
+        if($_SESSION["Arbol"]->Obtener_Raiz()!=null){
             $_SESSION["Arbol"]->setVectorR();
-            $_SESSION["Arbol"]->preOrden($_SESSION["Arbol"]->Optener_Raiz());
+            $_SESSION["Arbol"]->preOrden($_SESSION["Arbol"]->Obtener_Raiz());
             $x="";
             foreach ($_SESSION["Arbol"]->getVectorR() as $valor => $value) {
-                $x=$x. " | ".$valor." | ";
+                $x = $x. " | ".$valor." | ";
             }  
-            echo "<script languaje= 'javascript'>
-                alert('El Recorrido PreOrden es: $x');
-            </script>";
+            echo"EL RECORRIDO PRE-ORDEN ES: <br><br>". $x;
         }else{
-            echo "<script languaje= 'javascript'>
-                alert('El Arbol esta Vacio');
-            </script>";
+            echo "EL ARBOL ESTÁ VACIO";
         } 
     }
         ?>
@@ -147,20 +144,16 @@
     <div class="in_order">
         <?php
         if (isset($_POST["InOrden"])) {
-        if($_SESSION["Arbol"]->Optener_Raiz()!=null){
+        if($_SESSION["Arbol"]->Obtener_Raiz()!=null){
             $_SESSION["Arbol"]->setVectorR();
-            $_SESSION["Arbol"]->InOrden($_SESSION["Arbol"]->Optener_Raiz());
+            $_SESSION["Arbol"]->InOrden($_SESSION["Arbol"]->Obtener_Raiz());
             $x="";
             foreach ($_SESSION["Arbol"]->getVectorR() as $valor => $value) {
                 $x=$x. " | ".$valor." | ";
             }
-            echo "<script languaje= 'javascript'>
-                alert('El Recorrido InOrden es: $x');
-            </script>";
+                echo'EL RECORRIDO IN-ORDEN ES:<br><br>'.$x;
         }else{
-            echo "<script languaje= 'javascript'>
-                alert('El Arbol esta Vacio');
-            </script>";   
+                echo'EL ARBOL ESTÁ VACIO';
         }
     }
         ?>
@@ -168,20 +161,16 @@
     <div class="post_order">
         <?php
         if (isset($_POST["PosOrden"])) {
-        if($_SESSION["Arbol"]->Optener_Raiz()!=null){
+        if($_SESSION["Arbol"]->Obtener_Raiz()!=null){
             $_SESSION["Arbol"]->setVectorR();
-            $_SESSION["Arbol"]->PosOrden($_SESSION["Arbol"]->Optener_Raiz());
+            $_SESSION["Arbol"]->PosOrden($_SESSION["Arbol"]->Obtener_Raiz());
             $x="";
             foreach ($_SESSION["Arbol"]->getVectorR() as $valor => $value) {
                 $x=$x. " | ".$valor." | ";
             }
-            echo "<script languaje= 'javascript'>
-                alert('El Recorrido PosOrden es: $x');
-            </script>";
+            echo 'EL RECORRIDO POS-ORDEN ES:<br><br> ' .$x;
         }else{
-            echo "<script languaje= 'javascript'>
-                alert('El Arbol esta Vacio');
-            </script>";
+            echo 'EL ARBOL ESTÁ VACIO';
         }
     }
         ?>
@@ -189,15 +178,11 @@
     <div class="Por_niveles">
         <?php
         if (isset($_POST["PorNiveles"])) { 
-        if($_SESSION["Arbol"]->Optener_Raiz()!=null){
-            $x=($_SESSION["Arbol"]->recorridoN($_SESSION["Arbol"]->Optener_Raiz()));
-            echo "<script languaje= 'javascript'>
-                alert('El Recorrido Por Niveles es: $x');
-            </script>";
+        if($_SESSION["Arbol"]->Obtener_Raiz()!=null){
+            $x=($_SESSION["Arbol"]->recorridoN($_SESSION["Arbol"]->Obtener_Raiz()));
+            echo 'EL RECORRIDO POR NIVELES ES: <br><br> '. $x;
         }else{
-            echo "<script languaje= 'javascript'>
-                alert('El Arbol esta Vacio');
-            </script>";
+            echo 'EL ARBOL ESTÁ VACIO';
         }
     }
         ?>
@@ -207,35 +192,27 @@
     <div class="ContarNodos">
         <?php
         if (isset($_POST["ContarNodo"])) {
-        $x=($_SESSION["Arbol"]-> Contar_Nodos($_SESSION["Arbol"]->Optener_Raiz()));
-            echo "<script languaje= 'javascript'>
-                alert('El Numero de Nodos en el Arbol es: $x');
-            </script>";
+        $x=($_SESSION["Arbol"]-> Contar_Nodos($_SESSION["Arbol"]->Obtener_Raiz()));
+        echo'EL NÚMERO DE NODOS EN EL ARBOL ES: <br><br>' .$x;
     }
         ?>
     </div>
     <div class="contar_pares"> <!---No se si esta bien el de pares, no tengo muy claro en funcionamiento--->
         <?php
         if (isset($_POST["contarP"])) {
-        $x=($_SESSION["Arbol"]->contarPares($_SESSION["Arbol"]->Optener_Raiz()));
-        echo "<script languaje= 'javascript'>
-            alert('El Numero de Nodos Pares en el Arbol es: $x');
-        </script>";
+        $x=($_SESSION["Arbol"]->contarPares($_SESSION["Arbol"]->Obtener_Raiz()));
+        echo'EL NÚMERO DE NODOS PARES EN EL ARBOL ES:<br><br>'.$x;
     }
         ?>
     </div>
     <div class="Calcular_altura">
         <?php
         if (isset($_POST["Altura"])) {
-        if($_SESSION["Arbol"]->Optener_Raiz()!=null){
-            $x=$_SESSION["Arbol"]->alturaArbol($_SESSION["Arbol"]->Optener_Raiz());;
-            echo "<script languaje= 'javascript'>
-                alert('La Altura del Arbol es: $x');
-            </script>";
+        if($_SESSION["Arbol"]->Obtener_Raiz()!=null){
+            $x=$_SESSION["Arbol"]->alturaArbol($_SESSION["Arbol"]->Obtener_Raiz());;
+            echo 'LA ALTURA DEL ARBOL ES:<br><br>' .$x;
         }else{
-            echo "<script languaje= 'javascript'>
-                alert('La Altura es 0 porque el Arbol esta Vacio');
-            </script>";
+            echo 'EL ARBOL ESTÁ VACIO';
         }
     }
         ?>
@@ -244,15 +221,11 @@
     <div class="Arbol_Completo">
         <?php
         if (isset($_POST["ArbolCompleto"])) {
-        if($_SESSION["Arbol"]->Optener_Raiz()!=null){
-            $x=($_SESSION["Arbol"]->Completo($_SESSION["Arbol"]->Optener_Raiz()));
-            echo "<script languaje= 'javascript'>
-                alert('$x');
-            </script>";
+        if($_SESSION["Arbol"]->Obtener_Raiz()!=null){
+            $x=($_SESSION["Arbol"]->Completo($_SESSION["Arbol"]->Obtener_Raiz()));
+            echo $x;
         }else{
-            echo "<script languaje= 'javascript'>
-                alert('El Arbol esta Vacio');
-            </script>";
+            echo 'EL ARBOL ESTÁ VACIO';
         }
     }
         ?>
@@ -261,24 +234,22 @@
     <div class="verHojas">
         <?php
         if (isset($_POST["NodosHojas"])) {
-        if($_SESSION["Arbol"]->Optener_Raiz()!=null){
+        if($_SESSION["Arbol"]->Obtener_Raiz()!=null){
             $_SESSION["Arbol"]->setVectorR();
-            $_SESSION["Arbol"]->MostrarHojas($_SESSION["Arbol"]->Optener_Raiz());
+            $_SESSION["Arbol"]->MostrarHojas($_SESSION["Arbol"]->Obtener_Raiz());
             $x="";
             foreach ($_SESSION["Arbol"]->getVectorR() as $valor => $value) {
                 $x=$x. " | ".$valor." | ";
             }
-            echo "<script languaje= 'javascript'>
-                alert('Los Nodos Hojas Son: $x');
-            </script>";
+            echo 'LOS NODOS HOJAS SON:<br><br>'. $x;
         }else{
-            echo "<script languaje= 'javascript'>
-                alert('El Arbol esta Vacio');
-            </script>";
+            echo 'EL ARBOL ESTÁ VACIO';
         }
     }
         ?>
     </div> 
+    </div>
+
     
     <?php
     class Optener{ //RECURSIVIDAD
@@ -326,8 +297,8 @@
 
         <?php
         $op = new Optener();
-        $op->Optener_nodos($_SESSION['Arbol']->Optener_Raiz());
-        $op->edges($_SESSION['Arbol']->Optener_Raiz());
+        $op->Optener_nodos($_SESSION['Arbol']->Obtener_Raiz());
+        $op->edges($_SESSION['Arbol']->Obtener_Raiz());
         ?>
         var container = document.getElementById('Canvas_arbol');
 
@@ -336,6 +307,9 @@
             edges: edges
         };
         var options = {
+            interaction: {
+            zoomView: false
+        },
             edges: {
                 smooth: {
                     roundness: 0
@@ -350,6 +324,5 @@
         network = new vis.Network(container, data, options);
     }
     </script>
-
 </body>
 </html>
