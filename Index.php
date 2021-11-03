@@ -46,11 +46,11 @@
             <br><br>
             <input type="submit" value="Agregar nodo">
         </form>
-        <hr><br>
+        <hr>
     </div>
     <div class="Eliminar">
         <h2>Eliminar nodo</h2>
-        <form action="index.php" methof ="post">
+        <form action="index.php" method ="post">
             <input type="number" min="1" placeholder="Nodo que desea elmiminar" name=Nodo_Eliminar require>
             <input type="submit" value="Eliminar Nodo">
         </form>
@@ -110,6 +110,13 @@
                     alert('El Arbol esta Vacio');
                 </script>";
             }
+        }
+        ?>
+    </div>
+    <div class="eliminar_nodo">
+        <?php
+        if (isset($_POST["Nodo_Eliminar"])){
+            $_SESSION["Arbol"]->EliminarNodo($_POST["Nodo_Eliminar"]);
         }
         ?>
     </div>

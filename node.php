@@ -4,7 +4,6 @@ class Node{
     private $Padre;
     private $Izquierda;
     private $Derecha;
-    private $Informacion;
 
     function __construct($Valor) {
         $this->Valor = $Valor;

@@ -73,9 +73,48 @@ class Arbol{
             }
         }
     }
-    public function Eliminar($n){
-        //---------------------------------------------------------CODE---------------------------------------------------------- 
+    public function buscarPadre($n, $x) {
+        if ($n == null) {
+            return null;
+        }
+        if (($n->getDerecha() != null && $n->getDerecha()->getValor() == $x) || ($n->getIzquierda() != null && $n->getIzquierda()->getValor() == $x)) {
+            return $n;
+        } else {
+            $i = $this->buscarPadre($n->getIzquierda(), $x);
+            if ($i != null) {
+                return $i;
+            } else {
+                $d = $this->buscarPadre($n->getDerecha(), $x);
+                return $d;
+            }
+        }
     }
+    public function EliminarNodo($n) {
+        $x = $this->Busqueda($this-> Raiz, $n);
+        if ($x != null) {
+            if (($x->getIzquierda() == null && $x->getDerecha()==null)) {
+                $p = $this->buscarPadre($this->Raiz, $n);
+                if ($p->getIzquierda() != null && $p->getIzquierda()->getValor() == $n) {
+                    $p->setIzquierda(null);
+                }
+                if ($p->getDerecha() != null && $p->getDerecha()->getValor() == $n) {
+                    $p->setDerecha(null);
+                }
+                echo "<script languaje= 'javascript'>
+                    alert('Nodo  hoja Eliminado');
+                </script>"; 
+                } else {
+                echo "<script languaje= 'javascript'>
+                    alert('No se puede eliminar este nodo');
+                </script>"; 
+                }
+                } else {
+                echo "<script languaje= 'javascript'>
+                alert('Nodo no existe');
+                </script>"; 
+            }
+            echo "<script>draw();</script>";
+        }
     // RECORRIDOS
     public function preOrden($nodo){
         if($nodo!=null){
