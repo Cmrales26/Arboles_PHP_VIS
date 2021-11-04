@@ -135,7 +135,7 @@ class Arbol{
             array_push($tail, $n);
             while (count($tail)!=0){
                 $aux= array_shift($tail);
-                $r=$r." | ".$aux->getValor()." | ";
+                $r=$r." | ".$aux->getValor()." | - ";
                 if($aux->getIzquierda()!= null){
                     array_push($tail, $aux->getIzquierda());
                 }
