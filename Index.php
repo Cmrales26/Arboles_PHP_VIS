@@ -16,13 +16,13 @@
     <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <title>Arbol Binario</title>
+    <title>Árbol Binario</title>
 </head>
 
 <body onload="draw();">
     <div class="header">
         <i class="fas fa-project-diagram"></i>
-        <h1>ARBOL BINARIO</h1>
+        <h1>ÁRBOL BINARIO</h1>
         <?php
     include("Arbol.php");
     session_start();
@@ -79,7 +79,7 @@
             }  
             echo"<span>EL RECORRIDO PRE-ORDEN ES: ". $x. '</span>';
         }else{
-            echo "<span>EL ARBOL ESTÁ VACIO</span>";
+            echo "<span>EL ÁRBOL ESTÁ VACIO</span>";
         } 
     }
         ?>
@@ -97,7 +97,7 @@
             }
                 echo'<span>EL RECORRIDO IN-ORDEN ES: '.$x.'</span>';
         }else{
-                echo'<span>EL ARBOL ESTÁ VACIO</span>';
+                echo'<span>EL ÁRBOL ESTÁ VACIO</span>';
         }
     }
         ?>
@@ -114,7 +114,7 @@
             }
             echo '<span> EL RECORRIDO POS-ORDEN ES: ' .$x.'</span>';
         }else{
-            echo '<span>EL ARBOL ESTÁ VACIO</span>';
+            echo '<span>EL ÁRBOL ESTÁ VACIO</span>';
         }
     }
         ?>
@@ -126,7 +126,7 @@
             $x=($_SESSION["Arbol"]->recorridoN($_SESSION["Arbol"]->Obtener_Raiz()));
             echo '<span> EL RECORRIDO POR NIVELES ES: ' . $x .'</span>';
         }else{
-            echo '<span>EL ARBOL ESTÁ VACIO</span>';
+            echo '<span>EL ÁRBOL ESTÁ VACIO</span>';
         }
     }
         ?>
@@ -137,7 +137,7 @@
             <?php
         if (isset($_POST["ContarNodo"])) {
         $x=($_SESSION["Arbol"]-> Contar_Nodos($_SESSION["Arbol"]->Obtener_Raiz()));
-        echo'<span>EL NÚMERO DE NODOS EN EL ARBOL ES: ' .$x.'</span>';
+        echo'<span>EL NÚMERO DE NODOS EN EL ÁRBOL ES: ' .$x.'</span>';
     }
         ?>
         </div>
@@ -145,7 +145,7 @@
             <?php
         if (isset($_POST["contarP"])) {
         $x=($_SESSION["Arbol"]->contarPares($_SESSION["Arbol"]->Obtener_Raiz()));
-        echo'<span>EL NÚMERO DE NODOS PARES EN EL ARBOL ES: '.$x.'</span>';
+        echo'<span>EL NÚMERO DE NODOS PARES EN EL ÁRBOL ES: '.$x.'</span>';
     }
         ?>
         </div>
@@ -154,9 +154,9 @@
         if (isset($_POST["Altura"])) {
         if($_SESSION["Arbol"]->Obtener_Raiz()!=null){
             $x=$_SESSION["Arbol"]->alturaArbol($_SESSION["Arbol"]->Obtener_Raiz());;
-            echo '<span>LA ALTURA DEL ARBOL ES DE: ' .$x.' NIVELES</span>';
+            echo '<span>LA ALTURA DEL ÁRBOL ES DE: ' .$x.' NIVELES</span>';
         }else{
-            echo '<span>EL ARBOL ESTÁ VACIO</span>';
+            echo '<span>EL ÁRBOL ESTÁ VACIO</span>';
         }
     }
         ?>
@@ -169,7 +169,7 @@
             $x=($_SESSION["Arbol"]->Completo($_SESSION["Arbol"]->Obtener_Raiz()));
             echo '<span>'.$x.'</span>';
         }else{
-            echo '<span>EL ARBOL ESTÁ VACIO</span>';
+            echo '<span>EL ÁRBOL ESTÁ VACIO</span>';
         }
     }
         ?>
@@ -187,7 +187,7 @@
             }
             echo '<span>LOS NODOS HOJAS SON: '. $x.'</span>';
         }else{
-            echo '<span>EL ARBOL ESTÁ VACIO</span>';
+            echo '<span>EL ÁRBOL ESTÁ VACIO</span>';
         }
     }
         ?>
@@ -198,12 +198,12 @@
     <section>
         <div class="container_formulario">
             <div class="Agregar_arbol">
-                <h1>Crear Arbol</h1>
+                <h1>Crear Árbol</h1>
                 <div class="Formulario_raiz">
                     <form action="index.php" method="Post" id="Agergar_Raiz">
                         <input type="number" min="1" name="Raiz" placeholder="NODO RAIZ" require>
                         <button type="submit" name="AgregarRaiz" class="btn"><i class="fas fa-plus"></i> Agregar
-                            Raiz</button>
+                            Raíz</button>
                     </form>
                     <br>
                 </div>
@@ -224,7 +224,7 @@
                 </div>
                 <div class="Eliminar">
                     <form action="index.php" method="post">
-                        <input type="number" min="1" placeholder="ID" name="Nodo_Eliminar" require>
+                        <input type="number" min="1" placeholder="NODO A ELMINAR" name="Nodo_Eliminar" require>
                         <button type="submit" name="AgregarRaiz" class="btn"><i class="fas fa-trash"></i>Eliminar
                             Nodo</button>
                     </form>
@@ -254,7 +254,7 @@
                         <!--  -->
                         <!-- ARBOLES -->
                         <button type="submit" name="ArbolCompleto" class="btn" value="¿Arbol Completo?"><i
-                                class="fas fa-question"></i>¿Arbol Completo?</button>
+                                class="fas fa-question"></i>¿Árbol Completo?</button>
                         <button type="submit" name="NodosHojas" class="btn" value="Ver Nodos Hojas"><i
                                 class="fas fa-leaf"></i>Ver Nodos Hojas</button>
                 </form>
@@ -332,7 +332,6 @@
             nodes: {
                 borderWidth: 2,
                 chosen: false,
-                physics: false,
                 color: {
                     background: '#1883ba'
                 },

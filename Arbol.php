@@ -190,9 +190,9 @@ class Arbol{
         $cantidad=$this->Contar_Nodos($n);
         if($cantidad<$completo){
             $falta=$completo-$cantidad;
-            return "EL ARBOL NO ESTÁ COMPLETO, FALTAN ".$falta." NODOS PARA QUE SEA COMPLETO";
+            return "EL ÁRBOL NO ESTÁ COMPLETO, FALTAN ".$falta." NODOS PARA QUE SEA COMPLETO";
         }else{
-            return "EL ARBOL ESTÁ COMPLETO";
+            return "EL ÁRBOL ESTÁ COMPLETO";
         }
     }
     public function MostrarHojas($n){
