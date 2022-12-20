@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Style/styles.css">
-    <script type="text/javascript" src=" vis/dist/vis.js"></script>
-    <link href="vis/dist/vis.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/standalone/umd/vis-network.min.js" integrity="sha512-DOpf3tO7m7MJHkMMRRoNxiJL4CR+TFLYy2XnIOeTh26Hz8j8i9RHrVkXzh+AQ7mffzIFk538/zcQ3Yoo+7VISA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/f4e78c2614.js" crossorigin="anonymous"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
