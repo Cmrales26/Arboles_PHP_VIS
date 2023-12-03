@@ -1,3 +1,7 @@
+<?php
+    include('Arbol.php');
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,8 +27,8 @@
         <i class="fas fa-project-diagram"></i>
         <h1>ÁRBOL BINARIO</h1>
         <?php
-    include("Arbol.php");
-    session_start();
+    // include("Arbol.php");
+    // session_start();
     if (!isset($_SESSION["Arbol"])) {
     $_SESSION["Arbol"] = new Arbol();
     echo "<span>SE ESTÁN IMPLEMENTANDO EL USO DE COOKIES</span>";
