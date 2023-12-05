@@ -1,139 +1,245 @@
-*{
-    margin:10px;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  margin: 10px;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.header{
-    text-decoration: none;
-    margin: -20px;
-    background-color: #1883ba;
-    color: #fff !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    margin-bottom: 10px;
+.header {
+  text-decoration: none;
+  margin: -20px;
+  background-color: #1883ba;
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-bottom: 10px;
 }
-body{
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-body::-webkit-scrollbar{
-    width: 0px;
+
+body::-webkit-scrollbar {
+  width: 0px;
 }
 .fa-project-diagram:before {
-    font-size: 30px;
+  font-size: 30px;
 }
-.Canvas_arbol{
+.Canvas_arbol {
+  margin-top: 20px;
+  float: right;
+  width: 43%;
+  height: 400px;
+  overflow: hidden;
+}
+.container_formulario {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.Container_Mensajes {
+  text-align: center;
+  margin-left: 25px;
+  height: 200px;
+}
+.formulario {
+  position: relative;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+span {
+  display: table-cell;
+  padding: 15px;
+  border-radius: 10px;
+  border: 3px solid white;
+  color: white;
+  font-size: large;
+}
+.btn {
+  cursor: pointer;
+  border: none;
+  padding: 2px 20px 2px 20px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #1883ba;
+  border-radius: 50px;
+  margin: 0px 11px 18px 20px;
+  transition: transform 0.1s;
+}
+.btn:hover {
+  transform: scale(1.2);
+  color: #1883ba;
+  background-color: #ffffff;
+}
+.Agergar_nodo {
+  display: flex;
+}
+.lado {
+  margin-top: -17px;
+  margin-left: -17px;
+}
+#Agergar_nodo input[type="radio"]:checked + label {
+  background: #1883ba;
+  padding: 5px 10px 5px 10px;
+  border-radius: 20px;
+  color: white;
+  outline: unset !important;
+}
+#Agergar_nodo input[type="radio"]:hover + label {
+  cursor: pointer;
+}
+#Agergar_nodo input[type="radio"] {
+  visibility: hidden;
+}
+label {
+  font-size: 17px;
+  padding: 5px 10px 5px 10px;
+  transition: 0.2s;
+}
+label:hover {
+  font-size: 18px;
+}
+
+input[type="number"] {
+  border: 2px solid #1883ba;
+  border-radius: 4px;
+  padding-left: 4px;
+  margin: 0;
+  width: 20%;
+  height: 30px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+footer {
+  display: block;
+  border-radius: 2px;
+  background-color: #1883ba;
+  color: #fff;
+  font-size: 20px;
+  position: static !important;
+  text-align: center;
+  margin: -20px;
+  padding: 10px;
+}
+a {
+  padding: 10px;
+  border-radius: 20px;
+  color: #fff;
+  transition: transform 0.2s;
+}
+a:hover {
+  color: #1883ba;
+  background-color: white;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .Canvas_arbol {
     margin-top: 20px;
-    float: right;
-    width: 43%;
+    float: none;
+    width: 80%;
     height: 400px;
     overflow: hidden;
+  }
+  .CanvasArbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
-.container_formulario{
-    margin-top: 25px;
-    margin-bottom: 25px;
+@media screen and (max-width: 768px) {
+  input[type="number"] {
+    width: 60%;
+    height: 30px;
+  }
+  .lado {
+    margin-left: 20px;
+    margin-top: -50px;
+  }
+  .Agergar_nodo {
+    & input {
+      width: 20%;
+    }
+  }
 }
-.Container_Mensajes{
-    text-align: center;
-    margin-left: 25px;
-    height: 200px;
-}
-.formulario{
-    position: relative;
-    width: 45%;
+
+@media screen and (max-width: 500px) {
+  * {
+    margin: 0;
+  }
+  .header {
+    flex-direction: column;
+    padding: 2rem;
+    & h1 {
+      margin-bottom: 1rem;
+    }
+    & i {
+      margin-top: 1.5rem;
+    }
+  }
+  .container_formulario {
+    padding: 2rem;
+  }
+  input[type="number"] {
+    width: 100%;
+    height: 30px;
+  }
+  .Agergar_nodo {
+    & input {
+      width: 100%;
+    }
+  }
+
+  .Agregar_arbol{
+    & h1{
+        margin-bottom: 1.5rem;
+    }
+  }
+
+  .Agergar_nodo {
+    flex-direction: column;
+    align-items: center;
+    & .btn{
+        margin-top: 1rem;
+    }
+  }
+  .lado {
+    margin-top: 0;
+    margin-left: 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #Agergar_Raiz,
+  #Eliminar {
     display: flex;
     flex-direction: column;
-    text-align: center;
-}
-span{
-    display: table-cell;
-    padding: 15px;
-    border-radius: 10px;
-    border: 3px solid white;
-    color: white;
-    font-size: large;
-}
-.btn{
-    cursor: pointer;
-    border: none;
-    padding: 2px 20px 2px 20px;
-    height: 40px;
-    font-weight: 600;
-    font-size: 15px;
-    color: #ffffff;
-    background-color: #1883ba;
-    border-radius: 50px;
-    margin: 0px 11px 18px 20px;
-    transition: transform .1s;
-}
-.btn:hover{
-    transform: scale(1.2);
-    color: #1883ba;
-    background-color: #ffffff;
-}
-.Agergar_nodo{
-    display: flex;
-}
-.lado{
-    margin-top:-17px;
-    margin-left: -17px;
-}
-#Agergar_nodo input[type="radio"]:checked + label{
-    background:#1883ba;
-    padding:5px 10px 5px 10px;
-    border-radius: 20px;
-    color: white;
-    outline:unset !important;
-}
-#Agergar_nodo input[type="radio"]:hover + label{
-    cursor: pointer;
-}
-#Agergar_nodo input[type="radio"]{
-    visibility: hidden;
-}
-label{
-    font-size: 17px;
-    padding:5px 10px 5px 10px;
-    transition: .2s;
-}
-label:hover{
-    font-size: 18px;
-}
-
-input[type="number"]{
-    border: 2px solid #1883ba;
-    border-radius: 4px;
-    padding-left:4px ;
-    margin: 0;
-    width: 20%;
-    height: 30px;
-}
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-}
-input[type=number] {-moz-appearance:textfield;}
-
-
-footer{
-    display: block;
-    border-radius: 2px;
-    background-color:#1883ba;
-    color: #fff;
-    font-size: 20px;
-    position: static !important;
-    text-align: center;
-    margin: -20px; 
-    padding: 10px;
-}
-a{
-    padding: 10px;
-    border-radius: 20px;
-    color: #fff;
-    transition: transform .2s;
-}
-a:hover{
-    color: #1883ba;
-    background-color: white;
+    align-items: center;
+    justify-content: center;
+    
+    & .btn{
+        margin-top: 1rem;
+    }
+  }
+  .btn{
+    & i{
+        margin-right: 5px;
+    }
+  }
+  .Opciones{
+    & .btn{
+        width: 100%;
+        margin: 0;
+        margin-top: 1rem;
+    }
+  }
+  footer{
+    font-size: 16px;
+    padding: 2rem;
+  }
 }
